@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load staticfiles %}
+
+{% block datos %}
+            <div class="row">
+                <div class="col-xs-2"><h3>Contactos</h3></div>
+                <div class="col-xs-10" align="right"
+                    style=" vertical-align: middle; ">
+                    <form action="/contactos/append_contacto/"
+                        method="post" class="form-horizontal"
+                        role="form"
+                        style="display: inline;">{% csrf_token %}
+                    <input type=hidden name=id value=none>
+                    <input type="submit" value="Agregar contacto"
+                        class="btn btn-sm btn-success" style="margin:10px;"/>
+                    </form>
+                    <a href="/"
+                        class="btn btn-sm btn-info"> < Pagina anterior</a>
+                </div>
+            </div>
+            {% if lista_contactos %}
+                {% for entrada in lista_contactos %}
+                    <address>
+                        <strong>{{ entrada.razonNombreApellido }}</strong><br>
+                        <small>{{ entrada.calle }}, {{ entrada.piso }}<br>
+                        {{ entrada.ciudad }}<br>
+                        {{ entrada.provincia }}<br>
+                        {{ entrada.pais }}</small></<address>
+                        <br>
+                        <form action="/contactos/append_contacto/"
+                            method="post" class="form-horizontal"
+                            role="form"
+                            style="display: inline;">{% csrf_token %}
+                            <input type=hidden name=id value="{{ entrada.id }}">
+                            <input type="submit"
+                                value="Editar contacto"
+                                class="btn btn-sm btn-primary"
+                                style="margin:10px;"/>
+                        </form>
+                        <form action="/contactos/delete_contacto/"
+                            method="post" class="form-horizontal"
+                            role="form"
+                            style="display: inline;">{% csrf_token %}
+                            <input type=hidden name=id value="{{ entrada.id }}">
+                            <input type="submit"
+                                value="Borrar contacto"
+                                class="btn btn-sm btn-warning"
+                                style="margin:10px;"/>
+                        </form>
+                        <br>
+                {% endfor %}
+            {% else %}
+                <div class="jumbotron">
+                    <p>Sin datos para mostrar</p>
+
+                </div>
+            {% endif %}
+{% endblock %}

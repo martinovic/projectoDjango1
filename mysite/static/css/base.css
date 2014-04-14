@@ -1,0 +1,51 @@
+/* CSS  base.html */
+
+/* Código inicial en base.html */
+
+@charset "utf-8";
+@import url(//fonts.googleapis.com/css?family="Ubuntu"); *{font-family:"Ubuntu"}
+
+body.one{
+    background:url(//subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/shattered.png) no-repeat center center fixed;
+    background-color:transparent;-webkit-background-size:cover;
+    -moz-background-size:cover;-o-background-size:cover;background-size:cover
+}
+
+body.two{
+    background:url(//subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/bo_play_pattern.png) repeat repeat;
+    background-color:transparent;
+}
+
+label{ font-size: 18px }
+
+input{
+    border: 1px solid #B6ACAC;
+    box-sizing: border-box;
+    padding: 3px;
+    border-radius: 4px;
+    -o-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.input-large{
+    height: 44px !important;
+    font-size: 18px !important
+}
+
+.footer{
+    position: absolute;
+    width: 100%;
+    min-height: 75px;
+    bottom: 0;
+    border-top: 2px dotted gray;
+    background-color:#282828;
+}
+
+/* Código inline encontrado en base.html */
+.djcontent{ padding-top:75px }
+
+.form-vertical{
+    /* Old code comented */
+    /*max-width:75%;margin-left:20px*/
+}

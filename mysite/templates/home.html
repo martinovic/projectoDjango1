@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load staticfiles %}
+
+{% block datos %}
+<img src="{{ STATIC_URL }}imgs/img1.png" width="100%" alt="404 Error image">
+<h1>Index</h1>
+<a href="/contactos/" class="btn btn-info">Lista de conactos</a>
+{% endblock %}

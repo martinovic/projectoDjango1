@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load staticfiles %}
+
+{% block datos %}
+            <div class='mensajes' align="center">
+                {% if estado == "ok" %}
+                    <div class="alert alert-success">
+                {% else %}
+                    <div class="alert alert-danger">
+                {% endif %}
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+{% endblock %}

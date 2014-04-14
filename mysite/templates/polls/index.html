@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<html>
+    <body>
+        Pagina INDEX
+         <img src="{% static "polls/images/404.png" %}" alt="404 Error image">
+        {% if latest_poll_list %}
+            <ul>
+            {% for poll in latest_poll_list %}
+                <li>
+                    <a href="/polls/{{ poll.id }}/">{{ poll.question }} -
+                        {{ poll.pub_date}}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay encuestas disponibles</p>
+        {% endif %}
+    </body>
+</html>

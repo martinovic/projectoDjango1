@@ -1,0 +1,23 @@
+{% load url from future %}
+{% load staticfiles %}
+{% spaceless %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8"/><title>Django Contactos</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel=stylesheet href="{% static 'css/bootstrap.min.css' %}">
+<!--
+        <link rel=stylesheet href="//bootswatch.com/slate/bootstrap.min.css">
+-->
+        <link rel=stylesheet href="{% static 'css/base.css' %}" media=screen>
+    </head>
+    <body id=body class=one>
+        <div class="container" id="contenido">
+        {% block datos %}{% endblock %}
+        </div>
+    </body>
+</html>
+{% endspaceless %}
