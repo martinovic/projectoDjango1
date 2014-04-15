@@ -19,6 +19,21 @@
                         class="btn btn-sm btn-info"> < Pagina anterior</a>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12" align="right">
+                    <div class="row">
+                    <div class="input-group col-xs-4">
+                      <input type="text" class="form-control" name="search">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default"
+                            type="button">
+                            <i class="glyphicon glyphicon-search"></i>Buscar</button>
+                      </span>
+                    </div><!-- /input-group -->
+                    </div>
+                </div><!-- /.col-lg-6 -->
+
+            </div>
             {% if lista_contactos %}
                 {% for entrada in lista_contactos %}
                     <address>

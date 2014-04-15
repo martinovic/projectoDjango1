@@ -1,6 +1,10 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-#from django.http import HttpResponse
+
+# from django.http import HttpResponse
+
 from django.template import RequestContext
 from contactos.models import Contactos
 from django.core.context_processors import csrf
@@ -10,13 +14,17 @@ def index(request):
     '''
 
     '''
-    lista_contactos = Contactos.objects.order_by('-razonNombreApellido').all()
-    context = RequestContext(request, {'lista_contactos': lista_contactos, })
+
+    lista_contactos = Contactos.objects.order_by('-razonNombreApellido'
+            ).all()
+    context = RequestContext(request,
+                             {'lista_contactos': lista_contactos})
     return render(request, 'contactos/index.html', context)
 
 
 def append_contacto(request):
     '''Append to agenda'''
+
     c = {}
     c.update(csrf(request))
     context = {}
@@ -29,6 +37,7 @@ def append_contacto(request):
 
 def save_contactos(request):
     '''Graba los datos'''
+
     c = {}
     c.update(csrf(request))
     if request.method == 'POST':
@@ -60,7 +69,7 @@ def save_contactos(request):
         horario = request.POST['horario']
         observaciones = request.POST['observaciones']
         transportes = request.POST['transportes']
-        if request.POST['id'] != "":
+        if request.POST['id'] != '':
             cs = Contactos.objects.get(pk=request.POST['id'])
             cs.razonNombreApellido = razonNombreApellido
             cs.calle = calle
@@ -91,19 +100,36 @@ def save_contactos(request):
             cs.observaciones = observaciones
             cs.transportes = transportes
         else:
-            cs = Contactos(razonNombreApellido=razonNombreApellido,
-                calle=calle, numero=numero,
-                piso=piso, ciudad=ciudad,
-                provincia=provincia, pais=pais,
-                telefono1=telefono1, telefono2=telefono2,
-                telefono3=telefono3, telefono4=telefono4,
-                email1=email1, email2=email2, email3=email3,
-                facebook=facebook, twitter=twitter,
-                googleplus=googleplus, webpage=webpage,
-                tipoEntrada=tipoEntrada, productos=productos,
+            cs = Contactos(
+                razonNombreApellido=razonNombreApellido,
+                calle=calle,
+                numero=numero,
+                piso=piso,
+                ciudad=ciudad,
+                provincia=provincia,
+                pais=pais,
+                telefono1=telefono1,
+                telefono2=telefono2,
+                telefono3=telefono3,
+                telefono4=telefono4,
+                email1=email1,
+                email2=email2,
+                email3=email3,
+                facebook=facebook,
+                twitter=twitter,
+                googleplus=googleplus,
+                webpage=webpage,
+                tipoEntrada=tipoEntrada,
+                productos=productos,
                 entrega=entrega,
-                pago=pago, cuit=cuit, banco=banco, transportes=transportes,
-                cbu=cbu, horario=horario, observaciones=observaciones)
+                pago=pago,
+                cuit=cuit,
+                banco=banco,
+                transportes=transportes,
+                cbu=cbu,
+                horario=horario,
+                observaciones=observaciones,
+                )
         try:
             cs.save()
             return render(request, 'contactos/save_contactos.html')
@@ -113,29 +139,35 @@ def save_contactos(request):
 
 def delete_contacto(request):
     '''Borrado de datos'''
+
     c = {}
     c.update(csrf(request))
     if request.method == 'POST':
         try:
             Contactos.objects.get(pk=request.POST['id']).delete()
             context = {'estado': 'ok',
-                'message': 'Se ha borrado el registro.'}
+                       'message': 'Se ha borrado el registro.'}
         except:
             context = {'estado': 'fail',
-                'message': 'No se pudo borrar el archivo'}
+                       'message': 'No se pudo borrar el archivo'}
 
-        return render(request, 'contactos/delete_contactos.html', context)
+        return render(request, 'contactos/delete_contactos.html',
+                      context)
 
 
 def search_contacto(request):
     '''Busqueda de datos'''
+
     c = {}
     c.update(csrf(request))
     try:
         datos = get_object_or_404(Contactos,
-            razonNombreApellido__contains=request.POST["s"])
+                                  razonNombreApellido__contains=request.POST['s'
+                                  ])
         context = {'posts': datos}
     except:
         context = {'error_message': 'Dato no encontrado'}
 
     return render(request, 'contactos/search_contactos.html', context)
+
+
